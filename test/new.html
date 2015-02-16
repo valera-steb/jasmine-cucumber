@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Jasmine Spec Runner v2.0.2</title>
+
+    <link rel="shortcut icon" type="image/png" href="../jasmine/2_2_0/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="../jasmine/2_2_0/jasmine.css">
+
+
+    <script type="text/javascript" src="../jasmine/2_2_0/jasmine.js"></script>
+    <script type="text/javascript" src="../jasmine/2_2_0/jasmine-html.js"></script>
+    <script type="text/javascript" src="../jasmine/2_2_0/boot.js"></script>
+
+    <script type="text/javascript" src="../src/modified-cucumber.js"></script>
+    <script type="text/javascript" src="../src/feature-runner.js"></script>
+
+    <script type="text/javascript" src="newSyntax.specs.js"></script>
+    <script type="text/javascript" src="newSyntax.steps.js"></script>
+
+    <script type="text/javascript" src="beforeTest.js"></script>
+</head>
+<body>
+<script>
+    var runner = window.jasmineGroupRunner(window.fetureGroups, window.steps);
+
+    for (var i in window.fetureGroups)
+        runner(i);
+</script>
+</body>
+</html>

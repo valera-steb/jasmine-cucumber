@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Jasmine Spec Runner v2.0.2</title>
+
+    <link rel="shortcut icon" type="image/png" href="../jasmine/2_2_0/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" href="../jasmine/2_2_0/jasmine.css">
+
+
+    <script type="text/javascript" src="../jasmine/2_2_0/jasmine.js"></script>
+    <script type="text/javascript" src="../jasmine/2_2_0/jasmine-html.js"></script>
+    <script type="text/javascript" src="../jasmine/2_2_0/boot.js"></script>
+
+    <script type="text/javascript" src="../src/jasmine-cucumber.js"></script>
+    <script type="text/javascript" src="../src/jasmine-feature-runner.js"></script>
+
+    <script type="text/javascript" src="jasmine-cucumber-specs.js"></script>
+</head>
+<body>
+<script>
+    var runner = window.jasmineFeatureRunner(window.features, window.steps);
+
+    window.features.forEach(runner);
+</script>
+</body>
+</html>
