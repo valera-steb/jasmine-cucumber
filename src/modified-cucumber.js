@@ -1,6 +1,8 @@
 (function (exports) {
     exports.fetureGroups = {};
-    exports.fetureGroups[undefined]=[]; // что-бы эта группа выполнялась первой
+    exports.fetureGroups[undefined] = []; // что-бы эта группа выполнялась первой
+    exports.stepsGroups = {};
+
     var featureRunner = {
         enqueue: function (feature, group) {
             var group = exports.fetureGroups[group] || (exports.fetureGroups[group] = []);
@@ -68,9 +70,20 @@
             this.isOnly = options.only === true ? true : false;
             this.never = options.not === true ? true : false;
 
-            this.fromBackground = this.fromGroup = function () {
-                return self;
-            };
+
+            this.fromBackground = makePrioritySetter('background');
+            this.fromGroup = makePrioritySetter('group');
+            function makePrioritySetter(level) {
+                return function () {
+                    var step = self.steps[self.steps.length - 1];
+                    if (!step)
+                        throw new Error("Can't modify level without adding a step");
+
+                    step.level = level;
+                    step.fullDescription += ' (' + level + ')';
+                    return self;
+                };
+            }
 
 
             exports.examples = function () {
@@ -80,8 +93,6 @@
 
 
         var self = this;
-        // что-бы мапить на все сценарии данной фичи методы before/after
-        Scenario.prototype = this.scenarioProto = {};
 
         this.description = featureDescription;
         this.groupName = groupName;
@@ -105,7 +116,23 @@
             }
         };
 
-        this.add = this.use = this.with = function (example) {
+
+        this.add = this.with = function (example) {
+            return self;
+        };
+
+        //факт: фиче можно задать фон
+        this.use = function (name) {
+            if (!name || name == '')
+                throw new Error('Bad background name');
+
+            var
+                scenario = self.scenarios[self.scenarios.length - 1];
+
+            if (!scenario)
+                throw new Error("Can't set up background without scenario");
+
+            scenario.background = name;
             return self;
         };
     }
@@ -115,8 +142,6 @@
         featureRunner.enqueue(f, groupName);
         return f;
     }
-
-    exports.steps = [];
 
     function FeatureSteps(featurePattern) {
         var self = this;
@@ -145,16 +170,26 @@
             self.steps.push({
                 pattern: new RegExp('^' + pattern + '$'),
                 definition: definition,
+                name: pattern,
                 requireExpect: forceExpect
             });
             return self;
         };
     }
 
+    function makeStepsDescriber(name) {
+        return function (featurePattern) {
+            var featureSteps = new FeatureSteps(featurePattern);
+            var group = exports.stepsGroups[name] || (exports.stepsGroups[name] = []);
+
+            group.push(featureSteps);
+            return featureSteps;
+        };
+    }
+
     exports.feature = feature;
-    exports.featureSteps = function (featurePattern, callback) {
-        var featureSteps = new FeatureSteps(featurePattern, callback);
-        exports.steps.push(featureSteps);
-        return featureSteps;
-    };
+    exports.featureSteps = makeStepsDescriber('featureSteps');
+    exports.groupSteps = makeStepsDescriber('groupSteps');
+    exports.backgroundSteps = makeStepsDescriber('backgroundSteps');
+
 }(typeof window !== 'undefined' ? window : module.exports));

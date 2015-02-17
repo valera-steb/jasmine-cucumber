@@ -61,7 +61,7 @@ featureSteps('jasmine-cucumber:')
   .given('a person', function(person){
     this.person = person;
   })
-  .given('people', function(people){
+  .given('peoples', function(people){
     this.people = people;
   })
   .given('"(.*)" people', function(typeOfPeople, people){

@@ -36,10 +36,10 @@ feature('this feature is in group', 'group name')
         .then('z')
 )
     .add(scenario('this scenario use custom steps from background (all in back)')
-        .given('x')
-        .when('y')
-        .then('z'))
-    .use('background name'
+        .given('xg')
+        .when('yg')
+        .then('zg'))
+    .use('custom all in back'
 )
     .add(scenario('this scenario use steps from feature and group')
         .given('f1')
@@ -47,9 +47,9 @@ feature('this feature is in group', 'group name')
         .then('_f2')
 )
     .add(scenario('use steps modifier')
-        .given('f1')
-        .when('f2').fromBackground()
-        .then('f3').fromGroup())
+        .given('multi1')
+        .when('multi2').fromBackground()
+        .then('multi3').fromGroup())
     .use('back2'
 );
 
