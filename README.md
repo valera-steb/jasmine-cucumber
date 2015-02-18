@@ -25,69 +25,65 @@ In short, unit tests likely still make sense in Jasmine and would be hard to wri
 *What about cucumberjs?* I haven't spent a lot of effort trying to make cucumberjs work - but it has the extra layer of translating non js files into js which adds complexity (it isn't **just** javascript). Personally I have not found this added complexity to be worth it. It was also very important to me that 1 step be able to abstract away other steps (see nested steps below). Which is difficult/ discouraged in the cucumber implementations I have used. 
 
 #API
-<div style='float: left; width: 470px;'>
-    I recommend splitting your files into specs and steps, here is an example specs.js file
-    ```javascript 
-    feature('add', 'Calculator') 
-    .add(scenario('should be able to add 2 numbers together') 
-    .when('I enter "1"') 
-    .and('I add "2"') 
-    .then('I should get "3"')) 
-    
-    .add(scenario('should be able to add to a result of a previous  addition')
-    .given('I added "1" and "2"') 
-    .when('I add "3"') 
-    .then('I should get "6"')) 
-    
-    .add(scenario('should be able to add asynchronously') 
-    .when('I eventually add "1" and "2"') 
-    .then('I should get "3"')); 
-    ```
+I recommend splitting your files into specs and steps, here is an example specs.js file
 
-    <img src="specs.png">
-</div>
+```javascript
+feature('add', 'Calculator')
+    .add(scenario('should be able to add 2 numbers together')
+        .when('I enter "1"')
+        .and('I add "2"')
+        .then('I should get "3"'))
 
-<div style='float: left'>
+    .add(scenario('should be able to add to a result of a previous addition')
+        .given('I added "1" and "2"')
+        .when('I add "3"')
+        .then('I should get "6"'))
+
+    .add(scenario('should be able to add asynchronously')
+        .when('I eventually add "1" and "2"')
+        .then('I should get "3"'));
+```
+
+<img src="specs.png">
+
 ```javascrip
-    featureSteps('add') </br/>
-    .before(function (fCtx) { </br/>
-    this.values = []; </br/>
-    this.total = null; </br/>
-    }) </br/>
-    .given('I added "(.*)" and "(.*)"', function (first, second) { </br/>
-    //            this.when('I enter "' + first + '"'); </br/>
-    //            this.when('I add "' + second + '"'); </br/>
-    ctx.whenEnter.call(this, first); </br/>
-    ctx.whenAdd.call(this, second); </br/>
-    }) </br/>
-    .given('I eventually add "(.*)" and "(.*)"', function (first, second) { </br/>
-    var done = this.async(), </br/>
-    scenarioContext = this; </br/>
-    </br/>
-    setTimeout(function () { </br/>
-    ctx.whenEnter.call(scenarioContext, first); </br/>
-    ctx.whenAdd.call(scenarioContext, second); </br/>
-    //                scenarioContext.when('I enter "' + first + '"'); </br/>
-    //                scenarioContext.when('I add "' + second + '"'); </br/>
-    done(); </br/>
-    }, 1000); </br/>
-    }) </br/>
-    .when('I enter "(.*)"', ctx.whenEnter = function (val) { </br/>
-    this.values.push(val * 1); </br/>
-    }) </br/>
-    .when('I add "(.*)"', ctx.whenAdd = function(val) { </br/>
-    this.values.push(val * 1); </br/>
-    this.total = this.values[0] + this.values[1]; </br/>
-    this.values = [this.total]; </br/>
-    }) </br/>
-    .then('I should get "(.*)"', function (val) { </br/>
-    expect(this.total).toBe(val * 1); </br/>
-    }); </br/>
-    </br/>
-    ```
-</div>
+    var ctx = {};
 
-<div style="clear: both;"></div>
+    featureSteps('add')
+        .before(function (fCtx) {
+            this.values = [];
+            this.total = null;
+        })
+        .given('I added "(.*)" and "(.*)"', function (first, second) {
+//            this.when('I enter "' + first + '"');
+//            this.when('I add "' + second + '"');
+            ctx.whenEnter.call(this, first);
+            ctx.whenAdd.call(this, second);
+        })
+        .given('I eventually add "(.*)" and "(.*)"', function (first, second) {
+            var done = this.async(),
+                scenarioContext = this;
+
+            setTimeout(function () {
+                ctx.whenEnter.call(scenarioContext, first);
+                ctx.whenAdd.call(scenarioContext, second);
+//                scenarioContext.when('I enter "' + first + '"');
+//                scenarioContext.when('I add "' + second + '"');
+                done();
+            }, 1000);
+        })
+        .when('I enter "(.*)"', ctx.whenEnter = function (val) {
+            this.values.push(val * 1);
+        })
+        .when('I add "(.*)"', ctx.whenAdd = function(val) {
+            this.values.push(val * 1);
+            this.total = this.values[0] + this.values[1];
+            this.values = [this.total];
+        })
+        .then('I should get "(.*)"', function (val) {
+            expect(this.total).toBe(val * 1);
+        });
+```
 
 
 So what are we doing?
