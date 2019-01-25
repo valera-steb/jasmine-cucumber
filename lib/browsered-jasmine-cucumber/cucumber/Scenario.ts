@@ -1,10 +1,30 @@
-import {ISteps, IStepsDeclaration, IStepsExamples, IStepsModifier} from "./Steps";
+import {ISteps, steps} from "./Steps";
+import {CucumberModel} from "./Model";
 
-export function scenario(name: string, group?: string): ISteps{
-    return new Scenario();
+export function scenario(ctx: CucumberModel, name: string, group?: string): ISteps {
+    const ret = steps(ctx, name);
+
+    var scenarios = ctx.scenarios;
+    if (group) {
+        if (!ctx.scenariosGroups[group])
+            ctx.scenariosGroups[group] = {};
+        scenarios = ctx.scenariosGroups[group];
+    }
+
+    if (scenarios[name])
+        throw new Error(`There is scenario with name: ${name}`);
+    scenarios[name] = ctx.active.scenario;
+
+    return ret;
 }
 
+
+/*
 export class Scenario implements IStepsModifier {
+
+    constructor(private ctx: CucumberModel) {
+        this.x = this;
+    }
 
     public x: IStepsDeclaration;
 
@@ -31,4 +51,4 @@ export class Scenario implements IStepsModifier {
     public use(background: string): IStepsExamples {
         return this;
     }
-}
+}*/

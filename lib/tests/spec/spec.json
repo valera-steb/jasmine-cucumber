@@ -1,0 +1,65 @@
+{
+  "groups": {
+    "калькулятор": {
+      "сложные вычисления": [
+        {
+          "description": "шаги с пропуском",
+          "steps": [
+            {
+              "description": "Я ввожу \"1\"",
+              "arguments": [],
+              "keyword": "when"
+            },
+            {
+              "description": "Выбираю \"+\"",
+              "arguments": [],
+              "keyword": "and"
+            },
+            {
+              "description": "'Выбираю \"-\"",
+              "arguments": [
+                "который будет пропущен"
+              ],
+              "keyword": "and",
+              "skip": true
+            },
+            {
+              "description": "Выбираю \"=\"",
+              "arguments": [],
+              "keyword": "and"
+            },
+            {
+              "description": "На экране \"2\"",
+              "arguments": [],
+              "keyword": "then"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "features": {
+    "вычисления": [
+      {
+        "description": "сложение",
+        "steps": [
+        ]
+      },
+      {
+        "description": "секция не будет выполнена - добавлена как xdescribe",
+        "steps": [
+        ],
+        "skip": true
+      },
+      {
+        "description": "вычитание с примерами",
+        "steps": [
+        ],
+        "examples":[
+          {"a": 1, "b": 2, "s": -1},
+          {"a": 5, "b": 2, "s": 3}
+        ]
+      }
+    ]
+  }
+}
