@@ -1,9 +1,61 @@
 {
-  "groups": {
+  "featuresGroups": {
     "калькулятор": {
-      "сложные вычисления": [
-        {
-          "description": "шаги с пропуском",
+      "сложные вычисления": {
+        "scenarios": {
+          "шаги с пропуском": {
+            "description": "шаги с пропуском",
+            "steps": [
+              {
+                "description": "Я ввожу \"1\"",
+                "arguments": [],
+                "keyword": "when"
+              },
+              {
+                "description": "Выбираю \"+\"",
+                "arguments": [],
+                "keyword": "and"
+              },
+              {
+                "description": "Выбираю \"-\"",
+                "arguments": [
+                  "который будет пропущен"
+                ],
+                "keyword": "and",
+                "skip": true,
+                "from": "group"
+              },
+              {
+                "description": "Выбираю \"-\"",
+                "arguments": [
+                  "который будет пропущен"
+                ],
+                "keyword": "and",
+                "skip": true,
+                "from": "feature"
+              },
+              {
+                "description": "Выбираю \"=\"",
+                "arguments": [],
+                "keyword": "and"
+              },
+              {
+                "description": "На экране \"2\"",
+                "arguments": [],
+                "keyword": "then"
+              }
+            ],
+            "examples": []
+          }
+        }
+      }
+    }
+  },
+  "features": {
+    "вычисления": {
+      "scenarios": {
+        "сложение": {
+          "description": "сложение",
           "steps": [
             {
               "description": "Я ввожу \"1\"",
@@ -16,12 +68,9 @@
               "keyword": "and"
             },
             {
-              "description": "'Выбираю \"-\"",
-              "arguments": [
-                "который будет пропущен"
-              ],
-              "keyword": "and",
-              "skip": true
+              "description": "Я ввожу \"2\"",
+              "arguments": [],
+              "keyword": "and"
             },
             {
               "description": "Выбираю \"=\"",
@@ -29,37 +78,115 @@
               "keyword": "and"
             },
             {
-              "description": "На экране \"2\"",
+              "description": "На экране \"3\"",
               "arguments": [],
               "keyword": "then"
             }
-          ]
+          ],
+          "examples": []
+        },
+        "секция не будет выполнена - добавлена как xdescribe": {
+          "description": "секция не будет выполнена - добавлена как xdescribe",
+          "steps": [
+            {
+              "description": "какой-то объект",
+              "arguments": [
+                {
+                  "some": "object"
+                }
+              ],
+              "keyword": "given"
+            },
+            {
+              "description": "что-то сделаю",
+              "arguments": [],
+              "keyword": "when"
+            },
+            {
+              "description": "что-то произойдёт с объектом",
+              "arguments": [
+                [
+                  "no",
+                  "data"
+                ]
+              ],
+              "keyword": "then"
+            }
+          ],
+          "examples": [],
+          "skip": true
+        },
+        "вычитание с примерами": {
+          "description": "вычитание с примерами",
+          "steps": [
+            {
+              "description": "Я ввожу \"{a}\"",
+              "arguments": [],
+              "keyword": "when"
+            },
+            {
+              "description": "Выбираю \"-\"",
+              "arguments": [],
+              "keyword": "and"
+            },
+            {
+              "description": "Я ввожу \"{b}\"",
+              "arguments": [],
+              "keyword": "and"
+            },
+            {
+              "description": "Выбираю \"=\"",
+              "arguments": [],
+              "keyword": "and"
+            },
+            {
+              "description": "На экране \"{s}\"",
+              "arguments": [],
+              "keyword": "then",
+              "from": "background"
+            }
+          ],
+          "examples": [
+            {
+              "a": 1,
+              "b": 2,
+              "s": -1
+            },
+            {
+              "a": 5,
+              "b": 2,
+              "s": 3
+            }
+          ],
+          "background": "фон для примеров"
         }
-      ]
+      }
+    },
+    "отключенное описание функционала": {
+      "scenarios": {},
+      "skip": true
     }
   },
-  "features": {
-    "вычисления": [
-      {
-        "description": "сложение",
-        "steps": [
-        ]
-      },
-      {
-        "description": "секция не будет выполнена - добавлена как xdescribe",
-        "steps": [
-        ],
-        "skip": true
-      },
-      {
-        "description": "вычитание с примерами",
-        "steps": [
-        ],
-        "examples":[
-          {"a": 1, "b": 2, "s": -1},
-          {"a": 5, "b": 2, "s": 3}
-        ]
+  "scenariosGroups": {
+    "калькулятор": {
+      "отдельно стоящий сценарий, так-же может быть в группе": {
+        "description": "отдельно стоящий сценарий, так-же может быть в группе",
+        "steps": [],
+        "examples": []
       }
-    ]
+    }
+  },
+  "scenarios": {
+    "отдельно стоящий сценарий": {
+      "description": "отдельно стоящий сценарий",
+      "steps": [],
+      "examples": []
+    },
+    "отключенный отдельно стоящий сценарий": {
+      "description": "отключенный отдельно стоящий сценарий",
+      "steps": [],
+      "examples": [],
+      "skip": true
+    }
   }
 }
