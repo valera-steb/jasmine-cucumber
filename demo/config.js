@@ -3,8 +3,9 @@
  */
 require.config({
     deps: [
-        //'../dist/browsered-jasmine-cucumber'
-        '../dist/static'
+        '../dist/browsered-jasmine-cucumber'
+        //'../dist/static'
+        //'../dist/browsered-jasmine-cucumber_0_1_0'
     ],
 
     callback: function () {

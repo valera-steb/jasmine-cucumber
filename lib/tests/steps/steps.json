@@ -1,0 +1,56 @@
+{
+  "featuresSteps": {
+    "вычисления": {
+      "before": [
+        null
+      ],
+      "after": [
+        null
+      ],
+      "steps": [
+        {
+          "pattern": {},
+          "isThen": false
+        },
+        {
+          "pattern": {},
+          "isThen": false
+        },
+        {
+          "pattern": {},
+          "isThen": true
+        }
+      ]
+    }
+  },
+  "featuresScenariosSteps": {
+    "вычисления": {
+      "вычитание с примерами": {
+        "before": [],
+        "after": [],
+        "steps": []
+      }
+    }
+  },
+  "scenariosSteps": {
+    "отдельно стоящий сценарий": {
+      "before": [],
+      "after": [],
+      "steps": []
+    }
+  },
+  "groupsSteps": {
+    "калькулятор": {
+      "before": [],
+      "after": [],
+      "steps": []
+    }
+  },
+  "backgroundSteps": {
+    "фон для примеров": {
+      "before": [],
+      "after": [],
+      "steps": []
+    }
+  }
+}
