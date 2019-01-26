@@ -4,4 +4,10 @@ interface IRequire {
     context: any;
 }
 
+
+interface IModule {
+    exports: any;
+}
+
 declare const require: IRequire;
+declare const module: IModule;

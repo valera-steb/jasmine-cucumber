@@ -21,16 +21,16 @@ export class CucumberModel {
 }
 
 export interface IActive {
-    feature: IFeaturesModel;
+    feature: IFeatureModel;
     scenario: IScenarioModel;
     step: IStepModel;
 }
 
 export interface IFeaturesDictionaryModel {
-    [id: string]: IFeaturesModel;
+    [id: string]: IFeatureModel;
 }
 
-export interface IFeaturesModel {
+export interface IFeatureModel {
     scenarios: IScenariosDictionaryModel;
     skip?: boolean;
 }
