@@ -18,11 +18,11 @@ export interface IFeatureFn {
 }
 
 export interface IScenarioFn {
-    (name: string, group?: string): st.ISteps;
+    (name: string, group?: string): st.IStepsDescription;
 }
 
 export interface IStepsFn {
-    (name: string): st.ISteps;
+    (name: string): st.IStepsDescription;
 }
 
 export {IExclude} from "./Exclude";

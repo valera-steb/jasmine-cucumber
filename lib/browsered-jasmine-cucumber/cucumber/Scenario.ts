@@ -1,7 +1,7 @@
-import {ISteps, steps} from "./Steps";
+import {IStepsDescription, steps} from "./Steps";
 import {CucumberModel} from "./Model";
 
-export function scenario(ctx: CucumberModel, name: string, group?: string): ISteps {
+export function scenario(ctx: CucumberModel, name: string, group?: string): IStepsDescription {
     const ret = steps(ctx, name);
 
     var scenarios = ctx.scenarios;

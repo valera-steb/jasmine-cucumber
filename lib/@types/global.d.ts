@@ -11,3 +11,5 @@ interface IModule {
 
 declare const require: IRequire;
 declare const module: IModule;
+
+declare type Action = () => void;

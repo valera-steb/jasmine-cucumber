@@ -1,6 +1,6 @@
 import {ITestFramework} from "../../browsered-jasmine-cucumber/runner/ITestFramework";
 
-export class FakeSpecBuilder implements ITestFramework {
+export class FakeTestFramework implements ITestFramework {
 
     constructor(log: string[]) {
         ['declare', 'it', 'xdeclare', 'xit'].forEach(method => {
@@ -24,4 +24,11 @@ export class FakeSpecBuilder implements ITestFramework {
 
     xdeclare: (name: string, fn: () => void) => void;
     xit: (name: string, fn) => void;
+
+
+    beforeAll(fn) {
+    };
+
+    afterAll(fn) {
+    };
 }

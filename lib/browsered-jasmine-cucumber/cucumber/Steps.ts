@@ -1,6 +1,6 @@
 import {CucumberModel, FromOptions, IActive, IScenarioModel} from "./Model";
 
-export function steps(ctx: CucumberModel, name: string): ISteps {
+export function steps(ctx: CucumberModel, name: string): IStepsDescription {
     ctx.active.scenario = {
         description: name,
         steps: [],
@@ -9,11 +9,14 @@ export function steps(ctx: CucumberModel, name: string): ISteps {
     return new Steps(ctx.active);
 }
 
-export interface IStepsExamples {
+export interface ISteps {
+}
+
+export interface IStepsExamples extends ISteps {
     examples(data: any[]);
 }
 
-export interface IStepsDeclaration {
+export interface IStepsDeclaration extends ISteps {
     given(pattern: string, ...data: any[]): IStepsModifier;
 
     when(pattern: string, ...data: any[]): IStepsModifier;
@@ -23,19 +26,19 @@ export interface IStepsDeclaration {
     then(pattern: string, ...data: any[]): IStepsModifier;
 }
 
-export interface ISteps extends IStepsDeclaration, IStepsExamples {
+export interface IStepsDescription extends IStepsDeclaration, IStepsExamples {
     x: IStepsDeclaration;
 
     use(background: string): IStepsExamples;
 }
 
 
-export interface IStepsModifier extends ISteps {
-    fromBackground(): ISteps;
+export interface IStepsModifier extends IStepsDescription {
+    fromBackground(): IStepsDescription;
 
-    fromGroup(): ISteps;
+    fromGroup(): IStepsDescription;
 
-    fromFeature(): ISteps;
+    fromFeature(): IStepsDescription;
 }
 
 export class Steps implements IStepsModifier {
@@ -79,7 +82,7 @@ export class Steps implements IStepsModifier {
         return this;
     }
 
-    public examples(data: any) {
+    public examples(data: any): ISteps {
         this._active.scenario.examples = data;
         return this;
     }

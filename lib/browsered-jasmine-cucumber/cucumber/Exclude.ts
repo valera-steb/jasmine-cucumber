@@ -1,6 +1,6 @@
 import * as feature from "./Feature";
 import * as scenario from "./Scenario";
-import {ISteps} from "./Steps";
+import {IStepsDescription} from "./Steps";
 import {CucumberModel} from "./Model";
 
 const ns = {
@@ -21,5 +21,5 @@ export function exclude(ctx: CucumberModel): IExclude {
 
 export interface IExclude {
     feature: (name: string, group?: string) => feature.IFeature;
-    scenario: (name: string, group?: string) => ISteps;
+    scenario: (name: string, group?: string) => IStepsDescription;
 }

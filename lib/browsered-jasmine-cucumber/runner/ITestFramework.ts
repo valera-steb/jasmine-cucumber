@@ -4,4 +4,7 @@ export interface ITestFramework {
 
     xdeclare(name: string, fn: () => void);
     xit(name: string, fn);
+
+    beforeAll(fn);
+    afterAll(fn);
 }

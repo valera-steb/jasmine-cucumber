@@ -17,7 +17,6 @@ export class Code {
     backgroundSteps: (name: string) => CodeStep;
 
     private _addSteps(key: string, name: string, feature: string): CodeStep {
-        console.log(arguments);
         if (isNullOrEmptyString(name))
             throw new Error('Name required');
 

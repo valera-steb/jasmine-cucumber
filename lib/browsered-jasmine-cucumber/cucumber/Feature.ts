@@ -1,5 +1,5 @@
 import {ISteps} from "./Steps";
-import {CucumberModel, IActive, IScenarioModel} from "./Model";
+import {CucumberModel, IActive} from "./Model";
 
 export function feature(ctx: CucumberModel, name: string, group?: string): Feature {
     var features = ctx.features;
