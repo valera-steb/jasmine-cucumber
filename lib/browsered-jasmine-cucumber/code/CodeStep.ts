@@ -20,6 +20,7 @@ export class CodeStep {
 
         this._set.steps.push({
             pattern: new RegExp('^' + pattern + '$'),
+            description: pattern,
             fn: fn,
             isThen: isThen
         });

@@ -25,7 +25,7 @@ describe('runner', () => {
         specBuilder = new SpecBuilder();
     });
 
-    it('should declare spec in testingFramework', () => {
+    xit('should declare spec in testingFramework', () => {
 
         executeSpec(cucumber.feature, cucumber.steps, cucumber.scenario, cucumber.x);
 
@@ -40,7 +40,7 @@ describe('runner', () => {
         expect(log).toEqual(sd);
     });
 
-    it('should correlate spec and steps', ()=>{
+    xit('should correlate spec and steps', ()=>{
         const lw = buildLogger(log);
 
         fullSpec.executeFullSpec(cucumber.feature, cucumber.steps, cucumber.scenario, cucumber.x);

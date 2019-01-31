@@ -14,14 +14,14 @@
               {
                 "description": "Выбираю \"+\"",
                 "arguments": [],
-                "keyword": "and"
+                "keyword": "when"
               },
               {
                 "description": "Выбираю \"-\"",
                 "arguments": [
                   "который будет пропущен"
                 ],
-                "keyword": "and",
+                "keyword": "when",
                 "skip": true,
                 "from": "group"
               },
@@ -30,14 +30,14 @@
                 "arguments": [
                   "который будет пропущен"
                 ],
-                "keyword": "and",
+                "keyword": "when",
                 "skip": true,
                 "from": "feature"
               },
               {
                 "description": "Выбираю \"=\"",
                 "arguments": [],
-                "keyword": "and"
+                "keyword": "when"
               },
               {
                 "description": "На экране \"2\"",
@@ -65,17 +65,17 @@
             {
               "description": "Выбираю \"+\"",
               "arguments": [],
-              "keyword": "and"
+              "keyword": "when"
             },
             {
               "description": "Я ввожу \"2\"",
               "arguments": [],
-              "keyword": "and"
+              "keyword": "when"
             },
             {
               "description": "Выбираю \"=\"",
               "arguments": [],
-              "keyword": "and"
+              "keyword": "when"
             },
             {
               "description": "На экране \"3\"",
@@ -127,17 +127,17 @@
             {
               "description": "Выбираю \"-\"",
               "arguments": [],
-              "keyword": "and"
+              "keyword": "when"
             },
             {
               "description": "Я ввожу \"{b}\"",
               "arguments": [],
-              "keyword": "and"
+              "keyword": "when"
             },
             {
               "description": "Выбираю \"=\"",
               "arguments": [],
-              "keyword": "and"
+              "keyword": "when"
             },
             {
               "description": "На экране \"{s}\"",

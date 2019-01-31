@@ -1,6 +1,9 @@
 import {IScenarioStepsFn, IStepsFn} from "../../browsered-jasmine-cucumber/code/code";
 import {logFn} from "../utils";
 
+const fn = () => {
+};
+
 export function executeSteps(backgroundSteps: IStepsFn, featureSteps: IStepsFn,
                              groupSteps: IStepsFn, scenarioSteps: IScenarioStepsFn,
                              lw: logFn) {
@@ -29,4 +32,14 @@ export function executeSteps(backgroundSteps: IStepsFn, featureSteps: IStepsFn,
         .after(lw('fg01_s02.after'))
         .given('given and', () => {
         });
+
+
+//stub
+    groupSteps('featureGroup_01')
+        .given('given and', fn)
+        .when('when', fn)
+        .when('when and', fn)
+        .then('then', fn)
+        .then('then and', fn);
+
 }

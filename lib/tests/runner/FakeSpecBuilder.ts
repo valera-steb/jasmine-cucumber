@@ -33,4 +33,7 @@ export class FakeTestFramework implements ITestFramework {
     afterAll(fn) {
         fn();
     };
+
+    makeExpectStub() {
+    }
 }

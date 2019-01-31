@@ -10,14 +10,17 @@
       "steps": [
         {
           "pattern": {},
+          "description": "g1",
           "isThen": false
         },
         {
           "pattern": {},
+          "description": "w1",
           "isThen": false
         },
         {
           "pattern": {},
+          "description": "t1",
           "isThen": true
         }
       ]

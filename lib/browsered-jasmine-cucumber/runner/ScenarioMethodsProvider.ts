@@ -1,11 +1,17 @@
 import {IScenarioModel} from "../cucumber/Model";
-import {CodeModel} from "../code/Model";
+import {CodeModel, ICodeStepModel} from "../code/Model";
 import {IScenarioPath} from "./Model";
 import {once} from "./utils";
 
+export const stepsOrder = ['fs', 'f', 's', 'g', 'b'];
+
+export interface IStep {
+    step: ICodeStepModel;
+    from: string;
+}
+
 export class ScenarioMethodsProvider {
     private _steps;
-    private _stepsOrder = ['fs', 'f', 's', 'g', 'b'];
 
     constructor(private _path: IScenarioPath,
                 private _scenario: IScenarioModel,
@@ -30,8 +36,8 @@ export class ScenarioMethodsProvider {
     getBeforeActions: () => Action[];
     getAfterActions: () => Action[];
 
-    getGivenAndSteps: () => any;
-    getThenSteps: () => any;
+    getGivenAndSteps: () => IStep[];
+    getThenSteps: () => IStep[];
 
 
     private _getSteps() {
@@ -62,7 +68,7 @@ export class ScenarioMethodsProvider {
         const steps = this._getSteps();
         var ret = [];
 
-        this._stepsOrder.forEach(key => {
+        stepsOrder.forEach(key => {
             const filtered = where(steps[key]);
             if (!filtered) return;
 

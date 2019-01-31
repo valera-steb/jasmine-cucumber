@@ -6,6 +6,7 @@ export function steps(ctx: CucumberModel, name: string): IStepsDescription {
         steps: [],
         examples: [],
     };
+    delete ctx.active.step;
     return new Steps(ctx.active);
 }
 
@@ -63,6 +64,12 @@ export class Steps implements IStepsModifier {
     public when = (pattern: string, ...data: any[]) => this._add('when', pattern, data);
 
     private _add(keyword: string, pattern: string, data?: any): IStepsModifier {
+        if (keyword === 'and') {
+            if (!this._active.step)
+                throw new Error('.and() in the beginning of the scenario.');
+            keyword = this._active.step.keyword;
+        }
+
         this._active.step = {
             description: pattern,
             arguments: data,

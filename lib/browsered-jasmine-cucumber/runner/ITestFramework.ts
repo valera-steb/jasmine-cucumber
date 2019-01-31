@@ -7,4 +7,6 @@ export interface ITestFramework {
 
     beforeAll(fn);
     afterAll(fn);
+
+    makeExpectStub();
 }

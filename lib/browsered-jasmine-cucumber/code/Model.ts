@@ -22,6 +22,7 @@ export interface ICodeStepsSetModel {
 
 export interface ICodeStepModel {
     pattern: RegExp;
+    description: string;
     fn: IStepFn;
     isThen: boolean;
 }
@@ -31,5 +32,5 @@ export interface IFramingFn {
 }
 
 export interface IStepFn {
-    (ctx: any, ...params: any[]): void;
+    (ctx?: any, ...params: any[]): void;
 }
