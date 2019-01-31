@@ -27,8 +27,10 @@ export class FakeTestFramework implements ITestFramework {
 
 
     beforeAll(fn) {
+        fn();
     };
 
     afterAll(fn) {
+        fn();
     };
 }

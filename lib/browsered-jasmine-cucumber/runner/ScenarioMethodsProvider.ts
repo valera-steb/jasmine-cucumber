@@ -11,10 +11,10 @@ export class ScenarioMethodsProvider {
                 private _scenario: IScenarioModel,
                 private _code: CodeModel) {
 
-        this.getBeforeActions = once(
-            () => this._concat(x => x['before'], plainSelector));
+        this.getBeforeActions = once(() =>
+            this._concat(x => (x['before'] || []).reverse(), plainSelector).reverse());
         this.getAfterActions = once(() =>
-            this._concat(x => x['after'], plainSelector).reverse());
+            this._concat(x => x['after'], plainSelector));
 
         this.getGivenAndSteps = once(() =>
             this._concat(

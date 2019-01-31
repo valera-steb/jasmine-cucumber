@@ -1,5 +1,6 @@
 import {IExclude, IFeatureFn, IScenarioFn, IStepsFn} from "../../../browsered-jasmine-cucumber/cucumber/Cucumber";
 import * as code from "../../../browsered-jasmine-cucumber/code/code";
+import {logFn} from "../../utils";
 
 const fn = () => {
 };
@@ -29,7 +30,7 @@ export function executeSpec(feature: IFeatureFn, steps: IStepsFn, scenario: ISce
 
 export function executeSteps(backgroundSteps: code.IStepsFn, featureSteps: code.IStepsFn,
                              groupSteps: code.IStepsFn, scenarioSteps: code.IScenarioStepsFn,
-                             lw: (key: string) => () => void) {
+                             lw: logFn) {
 
     scenarioSteps('stand alone')
         .given('a', lw('sa.a'))

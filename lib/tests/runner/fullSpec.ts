@@ -27,7 +27,7 @@ export function executeFullSpec(feature: IFeatureFn, steps: IStepsFn, scenario: 
             .then('then')
             .and('then and')
         )
-        .add(steps('f01_steps_04')
+        .add(steps('f01_steps_05')
             .given('given')
             .and('given and')
             .and('given and')
